@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 const Login = () => {
   const [playerId, setPlayerId] = useState("");
   const [playerName, setPlayerName] = useState("");
-  const [verifiedToken, setVerifiedToken] = useState(null);
+  const [verifiedToken, setVerifiedToken] = useState(true);
   const navigate = useNavigate();
   const { gameId } = useParams();
 
