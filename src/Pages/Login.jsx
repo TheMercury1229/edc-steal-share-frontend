@@ -70,11 +70,11 @@ const Login = () => {
         />
         <ReCAPTCHA
           sitekey={import.meta.env.VITE_GOOGLE_CLIENT_CAPTCHA_KEY} // Use VITE_ prefix for Vite
-          onChange={verifyCaptcha}
+          // onChange={verifyCaptcha}
         />
 
         <button
-          disabled={!verifiedToken}
+          // disabled={!verifiedToken}
           className={`w-full py-4 z-4 border-4 text-xl mx-auto border-black bg-[#e83535d0] hover:bg-[#e83535d0]/80 ${
             !verifiedToken ? "cursor-not-allowed " : ""
           }`}
