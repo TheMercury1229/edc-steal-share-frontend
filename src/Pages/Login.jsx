@@ -68,10 +68,10 @@ const Login = () => {
           placeholder="Enter Your Name"
           className="px-3 py-2 rounded-md outline-none bg-transparent border-2 w-full border-gray-100 text-lg text-white mx-auto"
         />
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           sitekey={import.meta.env.VITE_GOOGLE_CLIENT_CAPTCHA_KEY} // Use VITE_ prefix for Vite
           // onChange={verifyCaptcha}
-        />
+        /> */}
 
         <button
           // disabled={!verifiedToken}
