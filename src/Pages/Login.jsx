@@ -14,26 +14,27 @@ const Login = () => {
     e.preventDefault();
     console.log("Form submitted");
 
-    if (!verifiedToken) {
-      console.error("Please verify that you are not a robot");
-      return;
-    }
+    // if (!verifiedToken) {
+    //   console.error("Please verify that you are not a robot");
+    //   return;
+    // }
 
-    try {
-      const res = await axiosInstance.post("/user/connect-to-game", {
-        playerId,
-        gameId,
-        playerName,
-        captchaToken: verifiedToken,
-      });
-      localStorage.setItem("playerId", playerId);
+    // try {
+    //   const res = await axiosInstance.post("/user/connect-to-game", {
+    //     playerId,
+    //     gameId,
+    //     playerName,
+    //     captchaToken: verifiedToken,
+    //   });
+    //   localStorage.setItem("playerId", playerId);
 
-      if (res.status === 200) {
-        navigate(`/game/${gameId}`);
-      }
-    } catch (error) {
-      console.error("Failed to connect to the game:", error);
-    }
+    //   if (res.status === 200) {
+    //     navigate(`/game/${gameId}`);
+    //   }
+    // } catch (error) {
+    //   console.error("Failed to connect to the game:", error);
+    // }
+    navigate(`/game/${gameId}`);
   };
 
   const verifyCaptcha = (value) => {
