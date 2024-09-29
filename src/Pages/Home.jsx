@@ -4,28 +4,28 @@ import { axiosInstance } from "../utils/axiosInstance";
 
 const Home = () => {
   const [activeGames, setActiveGames] = useState([
-    {
-      gameId: "test",
-    },
+    // {
+    //   gameId: "test",
+    // },
   ]);
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [error, setError] = useState(null); // Error state
 
-  // const fetchGames = async () => {
-  //   try {
-  //     // Need to create a route which can retrun the active games currently using this endpoint
-  //     const res = await axiosInstance.get("/user/get-active-games");
-  //     setActiveGames(res.data.games);
-  //   } catch (error) {
-  //     setError("Failed to fetch active games. Please try again later.");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  const fetchGames = async () => {
+    try {
+      // Need to create a route which can retrun the active games currently using this endpoint
+      const res = await axiosInstance.get("/user/get-active-games");
+      setActiveGames(res.data.games);
+    } catch (error) {
+      setError("Failed to fetch active games. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchGames();
-  // }, []);
+  useEffect(() => {
+    fetchGames();
+  }, []);
 
   if (isLoading) {
     return (

@@ -3,8 +3,11 @@ class WebSocketSingleton {
 
   constructor() {
     if (!WebSocketSingleton.instance) {
-      this.ws = new WebSocket(`ws://localhost:3000/`);
-      WebSocketSingleton.instance = this;
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token not found in local storage");
+      }
+      this.ws = new WebSocket(`ws://3.109.212.132:8080?token=${token}`);
     }
     return WebSocketSingleton.instance;
   }

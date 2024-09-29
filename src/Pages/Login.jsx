@@ -14,26 +14,26 @@ const Login = () => {
     e.preventDefault();
     console.log("Form submitted");
 
-    // if (!verifiedToken) {
-    //   console.error("Please verify that you are not a robot");
-    //   return;
-    // }
+    if (!verifiedToken) {
+      console.error("Please verify that you are not a robot");
+      return;
+    }
 
-    // try {
-    //   const res = await axiosInstance.post("/user/connect-to-game", {
-    //     playerId,
-    //     gameId,
-    //     playerName,
-    //     captchaToken: verifiedToken,
-    //   });
-    //   localStorage.setItem("playerId", playerId);
+    try {
+      const res = await axiosInstance.post("/user/connect-to-game", {
+        playerId,
+        gameId,
+        playerName,
+        captchaToken: verifiedToken,
+      });
+      localStorage.setItem("playerId", playerId);
 
-    //   if (res.status === 200) {
-    //     navigate(`/game/${gameId}`);
-    //   }
-    // } catch (error) {
-    //   console.error("Failed to connect to the game:", error);
-    // }
+      if (res.status === 200) {
+        navigate(`/game/${gameId}`);
+      }
+    } catch (error) {
+      console.error("Failed to connect to the game:", error);
+    }
     navigate(`/game/${gameId}`);
   };
 
@@ -68,13 +68,13 @@ const Login = () => {
           placeholder="Enter Your Name"
           className="px-3 py-2 rounded-md outline-none bg-transparent border-2 w-full border-gray-100 text-lg text-white mx-auto"
         />
-        {/* <ReCAPTCHA
+        <ReCAPTCHA
           sitekey={import.meta.env.VITE_GOOGLE_CLIENT_CAPTCHA_KEY} // Use VITE_ prefix for Vite
-          // onChange={verifyCaptcha}
-        /> */}
+          onChange={verifyCaptcha}
+        />
 
         <button
-          // disabled={!verifiedToken}
+          disabled={!verifiedToken}
           className={`w-full py-4 z-4 border-4 text-xl mx-auto border-black bg-[#e83535d0] hover:bg-[#e83535d0]/80 ${
             !verifiedToken ? "cursor-not-allowed " : ""
           }`}
