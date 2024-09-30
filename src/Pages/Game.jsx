@@ -12,10 +12,12 @@ const Game = () => {
   const [timeLeft, setTimeLeft] = useState(30); // Example countdown time
   const [isClicked, setIsClicked] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [connection, setConnection] = useState(null);
 
   useEffect(() => {
     const wsSingleton = new WebSocketSingleton();
     const ws = wsSingleton.getConnection();
+    setConnection(ws);
 
     if (ws) {
       ws.onmessage = (event) => {
@@ -84,7 +86,8 @@ const Game = () => {
   }, []);
 
   const handleChoice = (choice) => {
-    const ws = WebSocketSingleton.instance;
+    const ws = connection;
+    console.log(connection);
 
     if (ws && ws.readyState === WebSocket.OPEN) {
       console.log("Received choice:", choice);
