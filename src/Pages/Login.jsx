@@ -27,6 +27,7 @@ const Login = () => {
         captchaToken: verifiedToken,
       });
       localStorage.setItem("playerId", playerId);
+      localStorage.setItem("token", res.data.token);
 
       if (res.status === 200) {
         navigate(`/game/${gameId}`);
