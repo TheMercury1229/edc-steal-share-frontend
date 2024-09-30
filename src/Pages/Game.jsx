@@ -74,11 +74,11 @@ const Game = () => {
       };
 
       // Cleanup function when the component unmounts
-      return () => {
+      /* return () => {
         // Only close the WebSocket if it should be terminated
         // if the singleton pattern requires persistence, omit this
         ws.close();
-      };
+      }; */
     }
   }, []);
 
