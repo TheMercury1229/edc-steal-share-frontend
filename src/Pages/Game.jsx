@@ -20,6 +20,7 @@ const Game = () => {
     if (ws) {
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
+        console.log(data);
         try {
           if (data.type === "display-round-points") {
             setPoints(data.points);
@@ -83,9 +84,6 @@ const Game = () => {
   }, []);
 
   const handleChoice = (choice) => {
-    const wsSingleton = new WebSocketSingleton(
-      localStorage.getItem("playerId")
-    );
     const ws = wsSingleton.getConnection();
 
     if (ws && ws.readyState === WebSocket.OPEN) {
