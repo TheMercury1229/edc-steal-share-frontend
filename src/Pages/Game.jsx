@@ -84,7 +84,7 @@ const Game = () => {
   }, []);
 
   const handleChoice = (choice) => {
-    const ws = wsSingleton.getConnection();
+    const ws = WebSocketSingleton.instance;
 
     if (ws && ws.readyState === WebSocket.OPEN) {
       console.log("Received choice:", choice);
