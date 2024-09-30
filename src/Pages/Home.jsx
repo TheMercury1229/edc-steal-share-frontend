@@ -16,7 +16,8 @@ const Home = () => {
       // Need to create a route which can retrun the active games currently using this endpoint
       const res = await axiosInstance.get("/user/get-active-games");
       setActiveGames(res.data.games);
-      console.log(res.data.games);
+      localStorage.setItem("token", res.data.token);
+      console.log(res.data.token);
     } catch (error) {
       setError("Failed to fetch active games. Please try again later.");
     } finally {
