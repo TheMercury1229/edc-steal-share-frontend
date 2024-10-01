@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../utils/axiosInstance";
+import axios from "axios";
 
 const Home = () => {
   const [activeGames, setActiveGames] = useState([
@@ -14,7 +15,7 @@ const Home = () => {
   const fetchGames = async () => {
     try {
       // Need to create a route which can retrun the active games currently using this endpoint
-      const res = await axiosInstance.get("/user/get-active-games");
+      const res = await axios.get("https://edc-pict.site/user/get-active-games");
       setActiveGames(res.data.games);
     } catch (error) {
       setError("Failed to fetch active games. Please try again later.");

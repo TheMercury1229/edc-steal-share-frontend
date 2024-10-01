@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../utils/axiosInstance";
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
 
 const Login = () => {
   const [playerId, setPlayerId] = useState("");
@@ -20,7 +21,7 @@ const Login = () => {
     }
 
     try {
-      const res = await axiosInstance.post("/user/connect-to-game", {
+      const res = await axios.post("https://edc-pict.site/user/connect-to-game", {
         playerId,
         gameId,
         playerName,
