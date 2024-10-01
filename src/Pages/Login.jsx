@@ -21,22 +21,31 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("https://edc-pict.site/user/connect-to-game", {
-        playerId,
-        gameId,
-        playerName,
-        captchaToken: verifiedToken,
-      });
-      localStorage.setItem("playerId", playerId);
-      localStorage.setItem("token", res.data.token);
+      const res = await axios.post(
+        "https://edc-pict.site/user/connect-to-game",
+        {
+          playerId,
+          gameId,
+          playerName,
+          captchaToken: verifiedToken,
+        }
+      );
 
       if (res.status === 200) {
+        // Store player ID and token and redirect to game page
+        localStorage.setItem("playerId", playerId);
+        localStorage.setItem("token", res.data.token);
         navigate(`/game/${gameId}`);
+      } else if (res.status === 400) {
+        // Show an alert for the 400 error and stay on the login page
+        alert(res.data.message || "Failed to connect to the game.");
       }
     } catch (error) {
       console.error("Failed to connect to the game:", error);
+      alert(
+        "An error occurred while connecting to the game. Please try again."
+      );
     }
-    navigate(`/game/${gameId}`);
   };
 
   const verifyCaptcha = (value) => {
@@ -52,9 +61,6 @@ const Login = () => {
           className="w-[420px] h-[180px] object-cover"
         />
       </div>
-      {/* <h1 className="text-2xl font-medium text-center mb-8">
-        Login to Game-{gameId}
-      </h1> */}
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -74,7 +80,6 @@ const Login = () => {
           sitekey={import.meta.env.VITE_GOOGLE_CLIENT_CAPTCHA_KEY} // Use VITE_ prefix for Vite
           onChange={verifyCaptcha}
         />
-
         <button
           disabled={!verifiedToken}
           className={`w-full py-4 z-4 border-4 text-xl mx-auto border-black bg-[#e83535d0] hover:bg-[#e83535d0]/80 ${
