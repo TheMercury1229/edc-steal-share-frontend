@@ -7,7 +7,7 @@ class WebSocketSingleton {
       if (!token) {
         throw new Error("Token not found in local storage");
       }
-      this.ws = new WebSocket(`ws://3.109.212.132:8080?token=${token}`);
+      this.ws = new WebSocket(`wss://edc-pict.site?token=${token}`);
     }
     return WebSocketSingleton.instance;
   }
