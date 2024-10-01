@@ -46,6 +46,7 @@ const Game = () => {
             console.log(data.message);
           }
         } catch (error) {
+          toast.error(error.message);
           console.error("Error parsing WebSocket message:", error);
           console.log("Received message:", event.data);
         }
